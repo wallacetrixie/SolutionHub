@@ -1,0 +1,183 @@
+/* General Navbar Styles */
+.navbar {
+  width: 100%;
+  padding: 7px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+  border-top: 1px solid #dadada;    
+  border-bottom: 1px solid #dadada; 
+  border-left: none;
+  border-right: none;
+  position: sticky;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Logo */
+.navbar-logo h2 {
+  font-size: 23px;
+  font-weight: 700;
+  color: #36a3f7;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Nav Links */
+.navbar-links {
+  list-style: none;
+  font-family:poppins, sans-serif;
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #5a5a5a;
+  font-weight: 500;
+  font-size: 15px;
+  background: none;
+  font-weight:bold;
+  padding: 0;
+  border-radius: 0;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.navbar-links li a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 2.5px;
+  background: #36a3f7;
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  opacity: 1;
+}
+
+.navbar-links li a:hover,
+.navbar-links li a:focus {
+  color: #36a3f7;
+  background: none;
+}
+
+.navbar-links li a:hover::after,
+.navbar-links li a:focus::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Auth Buttons */
+.navbar-auth {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.login-btn {
+  background: none;
+  border: none;
+  color: #222;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 10px;
+  transition: color 0.2s;
+}
+
+.login-btn:hover {
+  color: #36a3f7;
+}
+
+.signup-btn {
+  background: #ffc72c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 28px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 199, 44, 0.12);
+  transition: background 0.2s, color 0.2s;
+}
+
+.signup-btn:hover {
+  background: #e6b022;
+  color: #fff;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 25px;
+  background: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+  .navbar-links {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 8px 6px;
+    border-radius: 10px;
+    width: 100vw;
+    margin-top: 4px;
+  }
+  .navbar-links {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 100vw;
+    background: #fff;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+  }
+  .navbar-links.active {
+    max-height: 350px;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 20px 0;
+  }
+  .navbar-auth {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
