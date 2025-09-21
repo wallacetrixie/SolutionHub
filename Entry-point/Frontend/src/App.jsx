@@ -8,6 +8,7 @@ import PopularCategories from "./Components/LandingPage/PopularCategories.jsx";
 import TestimonialSection from "./Components/LandingPage/Testimonials.jsx";
 import PricingPlans from "./Components/LandingPage/PricingPlan.jsx";
 import Insights from "./Components/LandingPage/Insights.jsx";
+import Newsletter from "./Components/LandingPage/News.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <TestimonialSection />
       <PricingPlans />
       <Insights />
+      <Newsletter />
     </div>
       
   );

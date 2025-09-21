@@ -1,0 +1,135 @@
+.newsletter-container {
+  background: #fafcff;
+  padding: 50px 0 40px 0;
+  text-align: center;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.newsletter-icon {
+  width: 60px;
+  height: 60px;
+  background: #e3f0ff;
+  color: #3793fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto 18px auto;
+}
+
+.newsletter-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: #3793fa;
+}
+
+.newsletter-desc {
+  color: #6c7a89;
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1.5px solid #e3f0ff;
+  font-size: 1.08rem;
+  width: 280px;
+  outline: none;
+  font-family: inherit;
+  transition: border 0.2s;
+}
+
+.newsletter-form input[type="email"]:focus {
+  border-color: #3793fa;
+}
+
+.newsletter-btn {
+  padding: 14px 28px;
+  border-radius: 10px;
+  background: #fac85c;
+  color: #222;
+  font-size: 1.08rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.newsletter-btn:disabled {
+  background: #e3f0ff;
+  color: #6c7a89;
+  cursor: not-allowed;
+}
+
+.newsletter-benefits {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #3793fa;
+  font-weight: 500;
+}
+
+.benefit-icon {
+  color: #3ecf8e;
+  margin-right: 6px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+.newsletter-divider {
+  margin: 24px auto 18px auto;
+  border: none;
+  border-top: 1.5px solid #e3f0ff;
+  width: 80%;
+}
+
+.newsletter-companies {
+  color: #6c7a89;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.company-list {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #222;
+}
+
+@media (max-width: 600px) {
+  .newsletter-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .newsletter-form input[type="email"] {
+    width: 90vw;
+    max-width: 320px;
+  }
+  .company-list {
+    gap: 14px;
+    font-size: 1rem;
+  }
+}
