@@ -5,84 +5,192 @@
   padding: 4rem 2rem;
   background-color: #f9f9f9;
   flex-wrap: wrap;
+  
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeIn 1s ease-out forwards;
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 800px;
+  animation: slideInLeft 1s 0.2s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: bold;
-  color: #333;
+  font-family:poppins, sans-serif;
+  color: #222;
   margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  transition: color 0.3s;
+}
+
+.hero-title span {
+  color: #2196f3;
+  background: linear-gradient(90deg, #2196f3 60%, #00c6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
   font-size: 1.2rem;
+  font-family:poppins, sans-serif;
   color: #555;
   margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInDesc 1s 0.6s ease-out forwards;
+}
+
+@keyframes fadeInDesc {
+  to {
+    opacity: 1;
+  }
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .cta-primary {
-  background-color: #ff6b00;
-  color: white;
+  background: linear-gradient(90deg, #ffdd57 0%, #ff6b00 100%);
+  color: #222;
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.75rem 1.7rem;
+  font-size: 1.05rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.12);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.cta-primary:hover {
+  background: linear-gradient(90deg, #ff6b00 0%, #ffdd57 100%);
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.18);
+  transform: translateY(-2px) scale(1.04);
 }
 
 .cta-secondary {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  background: #fff;
+  color: #007bff;
+  border: 2px solid #007bff;
+  padding: 0.75rem 1.7rem;
+  font-size: 1.05rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.08);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.cta-secondary:hover {
+  background: #007bff;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.18);
+  transform: translateY(-2px) scale(1.04);
 }
 
 .hero-image {
   position: relative;
   max-width: 500px;
   margin-top: 2rem;
+  opacity: 0;
+  animation: slideInRight 1s 0.4s ease-out forwards;
+  transform: translateX(40px);
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hero-image img {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(33, 150, 243, 0.08);
+  transition: box-shadow 0.3s;
 }
 
-.hero-stats {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.hero-image img:hover {
+  box-shadow: 0 16px 48px rgba(33, 150, 243, 0.18);
 }
 
-.stat {
+.gradient-blue {
   font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  background: linear-gradient(90deg, #2196f3 60%, #00c6ff 100%);
+  color: #2196f3;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 2.8rem;
 }
 
-.stat.yellow {
-  background-color: #ffdd57;
-  color: #333;
+.stat-top-left {
+  position: absolute;
+  left: 60%;
+  top: 12%;
+  transform: translate(-120%, -60%) rotate(-10deg);
+  z-index: 10;
+  font-size: 1.1rem;
+  animation: fadeInStat 1s 0.7s ease-out forwards;
+  opacity: 0;
 }
 
-.stat.blue {
-  background-color: #007bff;
-  color: white;
+.stat-bottom-right {
+  position: absolute;
+  left: 80%;
+  top: 65%;
+  transform: translate(-10%, 40%) rotate(8deg);
+  z-index: 10;
+  font-size: 1.1rem;
+  animation: fadeInStat 1s 0.9s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInStat {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Remove old .hero-stats positioning */
+.hero-stats {
+  display: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+  }
+  .hero-image {
+    margin-top: 1.5rem;
+    max-width: 100%;
+  }
 }
