@@ -5,6 +5,7 @@ import SearchDropdown from "./Components/LandingPage/SearchDropdown.jsx";
 import WhyUsSection from "./Components/LandingPage/WhyUsSection.jsx";
 import HowItWorks from "./Components/LandingPage/HowItWorks.jsx";
 import PopularCategories from "./Components/LandingPage/PopularCategories.jsx";
+import TestimonialSection from "./Components/LandingPage/Testimonials.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <WhyUsSection />
       <HowItWorks />
       <PopularCategories />
+      <TestimonialSection />
     </div>
       
   );
