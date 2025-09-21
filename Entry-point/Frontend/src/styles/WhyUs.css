@@ -1,0 +1,249 @@
+/* SkillHubSection.css */
+
+.skillhub-section {
+  padding: 80px 0;
+  background-color: #f9fbfd; /* A very light grey background */
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Darker text for titles */
+}
+
+.skillhub-highlight {
+  color: #007bff; /* SkillHub blue color */
+}
+
+.section-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  color: #555;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  gap: 30px;
+  margin-bottom: 80px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #eef1f6; /* Subtle border */
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(0, 123, 255, 0.18);
+  background: linear-gradient(135deg, #e3f0ff 0%, #2384e6 100%);
+  color: white
+}
+
+.feature-card:hover .feature-title,
+.feature-card:hover .feature-description {
+  color: white;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover .feature-icon {
+  background: linear-gradient(135deg, #b3d9ff 0%, #007bff 100%);
+  color: #fff;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-icon {
+  font-size: 2.5em; /* Adjust icon size as needed */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #e0efff, #b3d9ff); /* Light blue gradient for icons */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  color: #007bff; /* Icon color */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.feature-card:nth-child(1) .feature-icon { /* Post & Find Jobs */
+    background: linear-gradient(45deg, #e0efff, #b3d9ff);
+    color: #007bff;
+}
+.feature-card:nth-child(2) .feature-icon { /* Secure Payments */
+    background: linear-gradient(45deg, #e6ffe0, #c8ffb3); /* Greenish */
+    color: #28a745;
+}
+.feature-card:nth-child(3) .feature-icon { /* Verified Professionals */
+    background: linear-gradient(45deg, #fff3e0, #ffdbb3); /* Orangish */
+    color: #ffc107;
+}
+.feature-card:nth-child(4) .feature-icon { /* Project Management */
+    background: linear-gradient(45deg, #e0e6ff, #b3c2ff); /* Bluish-purple */
+    color: #6f42c1;
+}
+.feature-card:nth-child(5) .feature-icon { /* Collaboration Tools */
+    background: linear-gradient(45deg, #e0f7fa, #b3e5fc);
+    color: #00bcd4;
+}
+.feature-card:nth-child(6) .feature-icon { /* Analytics & Insights */
+    background: linear-gradient(45deg, #f3e5f5, #ce93d8);
+    color: #8e24aa;
+}
+
+.feature-title {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.feature-description {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #666;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient from the image */
+  border-radius: 12px;
+  padding: 30px 20px;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1; /* Distribute space evenly */
+  padding: 0 15px;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 1em;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* Animation keyframes */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Initial hidden state */
+/* .feature-card {
+  opacity: 0;
+  transform: translateY(30px);
+} */
+
+/* When in view, animate in */
+.feature-card.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 1;
+  transform: none;
+}
+
+.feature-card.slide-in-right {
+  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns per row */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.5em;
+  }
+  .section-description {
+    font-size: 1em;
+  }
+  .features-grid {
+    grid-template-columns: 1fr; /* Stack features on small screens */
+    gap: 20px;
+  }
+  .stats-bar {
+    flex-direction: column; /* Stack stats on small screens */
+    padding: 40px 20px;
+  }
+  .stat-item {
+    margin-bottom: 30px;
+  }
+  .stat-item:last-child {
+    margin-bottom: 0;
+  }
+  .stat-value {
+    font-size: 2.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 2em;
+  }
+  .skillhub-section {
+    padding: 60px 0;
+  }
+  .feature-card {
+    padding: 30px 20px;
+  }
+}
