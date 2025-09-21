@@ -1,0 +1,156 @@
+.insights-container {
+  background: #fafcff;
+  padding: 50px 0 60px 0;
+  text-align: center;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.insights-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: #3793fa;
+}
+
+.insights-desc {
+  color: #6c7a89;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.insights-grid {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.insight-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(55,147,250,0.08);
+  overflow: hidden;
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.insight-card:hover {
+  box-shadow: 0 6px 24px rgba(55,147,250,0.16);
+  transform: translateY(-6px) scale(1.03);
+}
+
+.insight-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.insight-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.insight-category {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #3793fa;
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 500;
+  padding: 6px 18px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(55,147,250,0.12);
+}
+
+.insight-content {
+  padding: 22px 22px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.insight-meta {
+  display: flex;
+  gap: 18px;
+  font-size: 0.98rem;
+  color: #6c7a89;
+  margin-bottom: 8px;
+}
+
+.meta-icon {
+  margin-right: 5px;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.insight-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #222;
+  text-align: left;
+}
+
+.insight-desc {
+  font-size: 1rem;
+  color: #6c7a89;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.insight-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.insight-read {
+  font-size: 0.98rem;
+  color: #6c7a89;
+}
+
+.insight-link {
+  color: #3793fa;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+.insight-link:hover {
+  color: #1a6ed8;
+}
+
+.arrow-icon {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 1100px) {
+  .insights-grid {
+    gap: 18px;
+  }
+  .insight-card {
+    width: 95vw;
+    max-width: 370px;
+  }
+}
+@media (max-width: 700px) {
+  .insights-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
