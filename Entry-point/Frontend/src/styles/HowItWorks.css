@@ -1,0 +1,121 @@
+.howitworks-container {
+  background: #fafcff;
+  padding: 40px 0;
+  text-align: center;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.howitworks-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.highlight {
+  color: #3793fa;
+}
+
+.howitworks-desc {
+  color: #6c7a89;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  font-family: inherit;
+}
+
+.howitworks-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.howitworks-tab {
+  background: #fff;
+  border: none;
+  outline: none;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #3793fa;
+  border-radius: 10px 10px 0 0;
+  margin: 0 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(55,147,250,0.08);
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.howitworks-tab.active {
+  background: #3793fa;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(55,147,250,0.12);
+}
+
+.howitworks-steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.howitworks-step {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(55,147,250,0.08);
+  padding: 32px 24px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  font-family: inherit;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.7s forwards;
+}
+
+.howitworks-step:hover {
+  box-shadow: 0 6px 24px rgba(55,147,250,0.16);
+}
+
+.howitworks-step-circle {
+  background: #3793fa;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-family: inherit;
+}
+
+.howitworks-step-icon {
+  font-size: 2.2rem;
+  color: #3793fa;
+  margin-bottom: 10px;
+}
+
+.howitworks-step-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: inherit;
+}
+
+.howitworks-step-desc {
+  color: #6c7a89;
+  font-size: 0.98rem;
+  font-family: inherit;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
