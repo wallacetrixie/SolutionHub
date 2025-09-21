@@ -112,11 +112,16 @@
 
 .hero-image {
   position: relative;
-  max-width: 500px;
+  max-width:600px;
   margin-top: 2rem;
   opacity: 0;
   animation: slideInRight 1s 0.4s ease-out forwards;
   transform: translateX(40px);
+}
+.hero-image img:hover {
+  box-shadow: 0 16px 48px rgba(33, 150, 243, 0.18);
+  transform: scale(1.06);
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
 }
 
 @keyframes slideInRight {
@@ -180,6 +185,37 @@
 /* Remove old .hero-stats positioning */
 .hero-stats {
   display: none;
+}
+
+.hero-button-info {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #444;
+  font-family: poppins, sans-serif;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.client-info {
+  color: #007bff;
+  font-weight: 500;
+}
+
+.freelancer-info {
+  color: #555454;
+  font-weight: 500;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 600px) {
+  .hero-button-info {
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-start;
+    font-size: 0.98rem;
+  }
 }
 
 /* Responsive tweaks */

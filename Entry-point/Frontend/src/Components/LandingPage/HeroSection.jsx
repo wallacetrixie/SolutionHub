@@ -17,6 +17,10 @@ const HeroSection = () => {
           <button className="cta-primary">Get Started</button>
           <button className="cta-secondary">Learn More</button>
         </div>
+        <div className="hero-button-info">
+          <span className="client-info">● For Clients: Hire Top Talent</span>
+          <span className="freelancer-info">● For Freelancers: Find Great Work</span>
+        </div>
       </div>
       <div className="hero-image">
         <img src={heroImage} alt="Freelancers collaborating" />
