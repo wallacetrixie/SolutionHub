@@ -9,6 +9,8 @@ import TestimonialSection from "./Components/LandingPage/Testimonials.jsx";
 import PricingPlans from "./Components/LandingPage/PricingPlan.jsx";
 import Insights from "./Components/LandingPage/Insights.jsx";
 import Newsletter from "./Components/LandingPage/News.jsx";
+import Footer from "./Components/LandingPage/Footer.jsx";
+import Location from "./Components/LandingPage/Location.jsx";
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
       <TestimonialSection />
       <PricingPlans />
       <Insights />
+      <Location />
       <Newsletter />
+      <Footer />
     </div>
       
   );
