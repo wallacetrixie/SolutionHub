@@ -1,22 +1,62 @@
 /* General Navbar Styles */
 .navbar {
   width: 100vw;
-  padding: 7px 100px;
+  padding: 15px 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, 0.7); 
+  background: rgba(255, 255, 255, 0.8); 
+  -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);           
-  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
-  border-top: 1px solid #dadada;
-  border-bottom: 1px solid #dadada;
-  border-left: none;
-  border-right: none;
+  box-shadow: 0 2px 20px rgba(37, 99, 235, 0.06), 0 1px 4px rgba(0,0,0,0.02);
+  border-bottom: 1px solid rgba(218, 218, 218, 0.3);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Scroll Progress Indicator */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #36a3f7 0%, #ffc72c 100%);
+  width: var(--scroll-progress, 0%);
+  transition: width 0.1s ease-out;
+  opacity: 0;
+}
+
+.navbar.scrolled::after {
+  opacity: 1;
+}
+
+/* Scrolled Navbar State */
+.navbar.scrolled {
+  padding: 8px 100px;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.12), 0 2px 8px rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(54, 163, 247, 0.2);
+}
+
+.navbar.scrolled .logo-text {
+  font-size: 20px;
+  background: linear-gradient(135deg, #36a3f7 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar.scrolled .logo-image {
+  height: 32px;
+  width: 32px;
+  box-shadow: 0 4px 12px rgba(54, 163, 247, 0.2);
 }
 
 .navbar-center {
@@ -162,6 +202,38 @@
   color: #fff;
 }
 
+/* Scrolled state auth buttons */
+.navbar.scrolled .login-btn {
+  background: rgba(54, 163, 247, 0.1);
+  border: 2px solid #36a3f7;
+  color: #36a3f7;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.navbar.scrolled .login-btn:hover {
+  background: #36a3f7;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(54, 163, 247, 0.3);
+}
+
+.navbar.scrolled .signup-btn {
+  background: linear-gradient(90deg, #36a3f7 0%, #ffc72c 100%);
+  padding: 8px 24px;
+  border-radius: 8px;
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(54, 163, 247, 0.25);
+}
+
+.navbar.scrolled .signup-btn:hover {
+  background: linear-gradient(90deg, #ffc72c 0%, #36a3f7 100%);
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 199, 44, 0.3);
+}
+
 /* Mobile Menu */
 .menu-toggle {
   display: none;
@@ -215,7 +287,10 @@
 /* Large tablets and small desktops */
 @media (max-width: 1200px) {
   .navbar {
-    padding: 7px 40px;
+    padding: 12px 40px;
+  }
+  .navbar.scrolled {
+    padding: 6px 40px;
   }
   .navbar-links {
     gap: 25px;
@@ -228,7 +303,10 @@
 /* Tablets */
 @media (max-width: 900px) {
   .navbar {
-    padding: 10px 20px;
+    padding: 12px 20px;
+  }
+  .navbar.scrolled {
+    padding: 8px 20px;
   }
   .navbar-links {
     gap: 20px;
@@ -247,28 +325,49 @@
   .logo-text {
     font-size: 20px;
   }
+  .navbar.scrolled .logo-text {
+    font-size: 18px;
+  }
   .logo-image {
     height: 30px;
     width: 30px;
+  }
+  .navbar.scrolled .logo-image {
+    height: 28px;
+    width: 28px;
   }
 }
 
 /* Mobile phones and small tablets */
 @media (max-width: 768px) {
   .navbar {
-    padding: 12px 16px;
+    padding: 14px 16px;
     width: 100vw;
     margin-top: 0;
     border-radius: 0;
+  }
+  
+  .navbar.scrolled {
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.97);
   }
   
   .logo-text {
     font-size: 18px;
   }
   
+  .navbar.scrolled .logo-text {
+    font-size: 16px;
+  }
+  
   .logo-image {
     height: 28px;
     width: 28px;
+  }
+  
+  .navbar.scrolled .logo-image {
+    height: 26px;
+    width: 26px;
   }
   .navbar-links {
     position: fixed;

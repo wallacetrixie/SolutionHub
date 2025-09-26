@@ -6,6 +6,7 @@ import logo from '../../assets/images/logo.jpg';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -41,12 +42,21 @@ const Navbar = () => {
     scrollToSection(sectionId);
   };
 
-  // Detect which section is currently in view
+  // Detect which section is currently in view and scroll state
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'whyus', 'howitworks', 'pricing', 'footer'];
       const scrollPosition = window.scrollY + 100;
+      
+      // Update scroll state for navbar appearance
+      setIsScrolled(window.scrollY > 50);
 
+      // Calculate and update scroll progress
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollProgress = (window.scrollY / documentHeight) * 100;
+      document.documentElement.style.setProperty('--scroll-progress', `${Math.min(scrollProgress, 100)}%`);
+
+      // Update active section
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i]);
         if (element && element.offsetTop <= scrollPosition) {
@@ -57,13 +67,13 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once to set initial active section
+    handleScroll(); // Call once to set initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className="navbar" aria-label="Main navigation">
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
       {/* Logo */}
       <div className="navbar-logo">
         <img src={logo} alt="SolutionHub Logo" className="logo-image" />
