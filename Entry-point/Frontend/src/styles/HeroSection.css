@@ -1,14 +1,33 @@
+/* Hero Section Container */
 .hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4rem 2rem;
-  background-color: #f9f9f9;
-  flex-wrap: wrap;
+  background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
   
   opacity: 0;
   transform: translateY(30px);
   animation: heroFadeIn 1s ease-out forwards;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23007bff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%232196f3" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  z-index: 1;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes heroFadeIn {
@@ -19,7 +38,8 @@
 }
 
 .hero-content {
-  max-width: 800px;
+  flex: 1;
+  max-width: 650px;
   animation: slideInLeft 1s 0.2s ease-out forwards;
   opacity: 0;
   transform: translateX(-40px);
@@ -65,39 +85,57 @@
   }
 }
 
+/* Dual CTA Buttons */
 .hero-buttons {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
 }
 
-.cta-primary {
-  background: linear-gradient(90deg, #ffdd57 0%, #ff6b00 100%);
-  color: #222;
-  border: none;
-  padding: 0.75rem 1.7rem;
-  font-size: 1.05rem;
-  cursor: pointer;
-  border-radius: 8px;
+.cta-hire, .cta-work {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.12);
-  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-}
-
-.cta-primary:hover {
-  background: linear-gradient(90deg, #ff6b00 0%, #ffdd57 100%);
-  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.18);
-  transform: translateY(-2px) scale(1.04);
-}
-
-.cta-secondary {
-  background: #fff;
-  color: #007bff;
-  border: 2px solid #007bff;
-  padding: 0.75rem 1.7rem;
-  font-size: 1.05rem;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-hire {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+}
+
+.cta-hire:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+.cta-work {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3);
+}
+
+.cta-work:hover {
+  background: linear-gradient(135deg, #20c997, #17a2b8);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+  transform: translateY(-3px);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(0, 123, 255, 0.08);
   transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
@@ -229,4 +267,42 @@
     margin-top: 1.5rem;
     max-width: 100%;
   }
+}
+
+/* Trust Badge */
+.hero-badge {
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #333;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+  animation: badgeBounce 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes badgeBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.hero-stats-inline {
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.hero-search-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
