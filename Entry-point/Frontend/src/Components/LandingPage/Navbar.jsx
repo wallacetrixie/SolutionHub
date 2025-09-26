@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/Navbar.css";
 import logo from '../../assets/images/logo.jpg';
 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,6 +18,50 @@ const Navbar = () => {
     }
   };
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 80; // Account for fixed navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    // Close mobile menu after clicking a link
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  };
+
+  // Detect which section is currently in view
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'whyus', 'howitworks', 'pricing', 'footer'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call once to set initial active section
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <nav className="navbar" aria-label="Main navigation">
       {/* Logo */}
@@ -28,11 +73,56 @@ const Navbar = () => {
       {/* Centered Navigation Links */}
       <div className="navbar-center">
         <ul className={`navbar-links ${isOpen ? "active" : ""}`}>
-          <li><a href="#home" tabIndex={0}>Home</a></li>
-          <li><a href="#features" tabIndex={0}>Features</a></li>
-          <li><a href="#howitworks" tabIndex={0}>How It Works</a></li>
-          <li><a href="#pricing" tabIndex={0}>Pricing</a></li>
-          <li><a href="#contact" tabIndex={0}>Contact</a></li>
+          <li>
+            <a 
+              href="#hero" 
+              tabIndex={0} 
+              onClick={(e) => handleNavClick(e, 'hero')}
+              className={activeSection === 'hero' ? 'active-link' : ''}
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#whyus" 
+              tabIndex={0} 
+              onClick={(e) => handleNavClick(e, 'whyus')}
+              className={activeSection === 'whyus' ? 'active-link' : ''}
+            >
+              Features
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#howitworks" 
+              tabIndex={0} 
+              onClick={(e) => handleNavClick(e, 'howitworks')}
+              className={activeSection === 'howitworks' ? 'active-link' : ''}
+            >
+              How It Works
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#pricing" 
+              tabIndex={0} 
+              onClick={(e) => handleNavClick(e, 'pricing')}
+              className={activeSection === 'pricing' ? 'active-link' : ''}
+            >
+              Pricing
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#footer" 
+              tabIndex={0} 
+              onClick={(e) => handleNavClick(e, 'footer')}
+              className={activeSection === 'footer' ? 'active-link' : ''}
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
 

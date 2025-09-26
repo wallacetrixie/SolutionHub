@@ -16,17 +16,27 @@ function App() {
   return (
     <div>
       <Navbar />
-      <HeroSection />
-      <SearchDropdown />
-      <WhyUsSection />
-      <HowItWorks />
+      <section id="hero">
+        <HeroSection />
+        <SearchDropdown />
+      </section>
+      <section id="whyus">
+        <WhyUsSection />
+      </section>
+      <section id="howitworks">
+        <HowItWorks />
+      </section>
       <PopularCategories />
       <TestimonialSection />
-      <PricingPlans />
+      <section id="pricing">
+        <PricingPlans />
+      </section>
       <Insights />
       <Location />
       <Newsletter />
-      <Footer />
+      <section id="footer">
+        <Footer />
+      </section>
     </div>
       
   );

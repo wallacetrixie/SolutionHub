@@ -111,6 +111,17 @@
   transform: translateX(-50%) scaleX(1);
 }
 
+/* Active link styles */
+.navbar-links li a.active-link {
+  color: #36a3f7;
+  font-weight: 700;
+}
+
+.navbar-links li a.active-link::after {
+  transform: translateX(-50%) scaleX(1);
+  background: linear-gradient(90deg, #36a3f7 0%, #ffc72c 100%);
+}
+
 /* Auth Buttons */
 .navbar-auth {
   display: flex;
