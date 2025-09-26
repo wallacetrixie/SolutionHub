@@ -26,13 +26,42 @@
 }
 
 /* Logo */
-.navbar-logo h2 {
-  font-size: 23px;
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+.logo-image {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(54, 163, 247, 0.15);
+  transition: box-shadow 0.2s ease;
+}
+
+.logo-image:hover {
+  box-shadow: 0 4px 12px rgba(54, 163, 247, 0.25);
+}
+
+.logo-text {
+  font-size: 24px;
   font-weight: 700;
   color: #36a3f7;
   font-family: 'Poppins', sans-serif;
   margin: 0;
   letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #36a3f7 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Nav Links */

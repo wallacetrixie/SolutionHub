@@ -15,7 +15,7 @@ function Footer() {
     <footer className="footer-container">
       <div className="footer-main">
         <div className="footer-brand">
-          <div className="footer-logo">SolutionHu</div>
+          <div className="footer-logo">SolutionHub</div>
           <p className="footer-desc">
             The world's largest marketplace for digital services.<br />
             Connecting talented freelancers with clients worldwide.
