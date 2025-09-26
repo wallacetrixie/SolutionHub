@@ -10,6 +10,13 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      toggleMenu();
+      event.preventDefault();
+    }
+  };
+
   return (
     <nav className="navbar" aria-label="Main navigation">
       {/* Logo */}
@@ -36,10 +43,18 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Hamburger Menu */}
-      <div className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isOpen} role="button" tabIndex={0}>
-        <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span>
+      <div 
+        className={`menu-toggle ${isOpen ? 'active' : ''}`} 
+        onClick={toggleMenu}
+        onKeyDown={handleKeyPress}
+        aria-label="Toggle menu" 
+        aria-expanded={isOpen} 
+        role="button" 
+        tabIndex={0}
+      >
+        <span className="bar bar1"></span>
+        <span className="bar bar2"></span>
+        <span className="bar bar3"></span>
       </div>
     </nav>
   );
