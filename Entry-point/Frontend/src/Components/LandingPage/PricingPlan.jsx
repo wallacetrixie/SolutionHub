@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaClock, FaUsers, FaRocket, FaBuilding } from "react-icons/fa";
-import "../../styles/PricingPlan.css";
+import "../../styles/LandingPage/PricingPlan.css";
 
 const plans = [
   {

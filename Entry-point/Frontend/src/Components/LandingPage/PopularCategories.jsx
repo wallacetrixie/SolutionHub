@@ -12,7 +12,7 @@ import {
   FaDollarSign,
   FaClock,
 } from "react-icons/fa";
-import "../../styles/PopularCategories.css";
+import "../../styles/LandingPage/PopularCategories.css";
 
 const categories = [
   {

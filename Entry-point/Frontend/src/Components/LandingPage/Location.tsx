@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import "../../styles/Location.css";
+import "../../styles/LandingPage/Location.css";
 import type { 
   LocationProps, 
   LocationState, 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/Navbar.css";
+import "../../styles/LandingPage/Navbar.css";
 import logo from '../../assets/images/logo.jpg';
 
 

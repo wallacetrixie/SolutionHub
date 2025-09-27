@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo, memo } from "react";
-import "../../styles/HowItWorks.css";
+import "../../styles/LandingPage/HowItWorks.css";
 import {
   FaRegFileAlt,
   FaSearch,

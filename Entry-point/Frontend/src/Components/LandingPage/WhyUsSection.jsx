@@ -10,7 +10,7 @@ import {
   FaAward,
   FaDollarSign
 } from 'react-icons/fa';
-import '../../styles/WhyUs.css';
+import '../../styles/LandingPage/WhyUs.css';
 
 const WhyUsSection = () => {
   const [visibleItems, setVisibleItems] = useState(new Set());

@@ -9,7 +9,7 @@ import {
   FaInstagram,
   FaArrowRight,
 } from "react-icons/fa";
-import "../../styles/Footer.css";
+import "../../styles/LandingPage/Footer.css";
 
 function Footer() {
   return (

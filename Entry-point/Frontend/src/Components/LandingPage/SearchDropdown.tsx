@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import "../../styles/Search.css";
+import "../../styles/LandingPage/Search.css";
 import { useSearchForm } from "../../hooks/useSearchForm";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import {

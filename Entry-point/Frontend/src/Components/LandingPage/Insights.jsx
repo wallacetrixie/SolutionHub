@@ -1,6 +1,6 @@
 import React from "react";
 import { FaUser, FaCalendarAlt, FaArrowRight } from "react-icons/fa";
-import "../../styles/Insights.css";
+import "../../styles/LandingPage/Insights.css";
 
 const insights = [
   {

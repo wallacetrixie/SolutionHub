@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaCheckCircle, FaPlay, FaPause, FaFilter } from "react-icons/fa";
-import "../../styles/Testimonials.css";
+import "../../styles/LandingPage/Testimonials.css";
 
 const testimonials = [
   {
