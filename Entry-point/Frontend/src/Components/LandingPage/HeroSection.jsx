@@ -127,15 +127,7 @@ const HeroSection = () => {
               </button>
             </div>
           </form>
-          <div className="popular-searches">
-            <span className="popular-label">Popular:</span>
-            <div className="popular-tags">
-              <span className="popular-tag">Logo Design</span>
-              <span className="popular-tag">Website Development</span>
-              <span className="popular-tag">Content Writing</span>
-              <span className="popular-tag">Mobile Apps</span>
-            </div>
-          </div>
+      
         </div>
 
         {/* Dynamic Stats Display */}

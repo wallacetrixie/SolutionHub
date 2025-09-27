@@ -1,102 +1,88 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useCallback } from "react";
 import "../../styles/Search.css";
-
-const freelancerCategories = [
-  "Web Development",
-  "Graphic Design",
-  "Content Writing",
-  "Digital Marketing",
-  "Mobile App Development",
-  "Data Analysis",
-  "UI/UX Design",
-];
-
-const jobCategories = [
-  "Frontend Developer",
-  "Backend Developer",
-  "Logo Designer",
-  "SEO Specialist",
-  "Mobile App Developer",
-  "Data Analyst",
-  "UX Researcher",
-];
-
-const locations = [
-  "Anywhere",
-  "Remote",
-  "United States",
-  "United Kingdom",
-  "India",
-  "Canada",
-  "Australia",
-];
-
-const experienceLevels = [
-  "Any Level",
-  "Entry Level",
-  "Intermediate",
-  "Expert",
-];
-
-const budgets = [
-  "Any Budget",
-  "Under $500",
-  "$500 - $1000",
-  "$1000 - $5000",
-  "Above $5000",
-];
-
-const durations = [
-  "Any Duration",
-  "1 Week",
-  "2 Weeks",
-  "3 Weeks",
-  "1 Month",
-  "3 Months",
-];
+import { useSearchForm } from "../../hooks/useSearchForm";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
+import {
+  FREELANCER_CATEGORIES,
+  JOB_CATEGORIES,
+  LOCATIONS,
+  EXPERIENCE_LEVELS,
+  BUDGETS,
+  DURATIONS,
+  SEARCH_PLACEHOLDERS,
+  POPULAR_SEARCHES,
+} from "../../Constants/searchConstants";
 
 function SearchDropdown() {
-  const [activeTab, setActiveTab] = useState("freelancers");
-  const [category, setCategory] = useState(freelancerCategories[0]);
-  const [location, setLocation] = useState(locations[0]);
-  const [experience, setExperience] = useState(experienceLevels[0]);
-  const [search, setSearch] = useState("");
-  // Job tab states
-  const [jobCategory, setJobCategory] = useState(jobCategories[0]);
-  const [budget, setBudget] = useState(budgets[0]);
-  const [duration, setDuration] = useState(durations[0]);
-  const [jobSearch, setJobSearch] = useState("");
+  const {
+    activeTab,
+    freelancerForm,
+    jobForm,
+    updateFreelancerForm,
+    updateJobForm,
+    handleTabChange,
+    getCurrentForm,
+    isFormValid,
+  } = useSearchForm();
 
-  // Animation state
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef(null);
+  const { isVisible, containerRef } = useScrollAnimation(100);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        setIsVisible(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    // Trigger on mount in case already in view
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
+    
+    if (!isFormValid()) {
+      alert("Please enter at least 2 characters in the search field.");
+      return;
+    }
+
+    const currentForm = getCurrentForm();
+    
     if (activeTab === "freelancers") {
+      const searchData = {
+        type: 'freelancers',
+        search: freelancerForm.search,
+        category: freelancerForm.category,
+        location: freelancerForm.location,
+        experience: freelancerForm.experience,
+      };
+      
+      // In a real app, you would dispatch this to a search API
+      console.log("Freelancer Search:", searchData);
       alert(
-        `Searching for: ${search}\nCategory: ${category}\nLocation: ${location}\nExperience: ${experience}`
+        `Searching for freelancers:\n` +
+        `Query: ${freelancerForm.search}\n` +
+        `Category: ${freelancerForm.category}\n` +
+        `Location: ${freelancerForm.location}\n` +
+        `Experience: ${freelancerForm.experience}`
       );
     } else {
+      const searchData = {
+        type: 'jobs',
+        search: jobForm.search,
+        category: jobForm.category,
+        budget: jobForm.budget,
+        duration: jobForm.duration,
+      };
+      
+      // In a real app, you would dispatch this to a search API
+      console.log("Job Search:", searchData);
       alert(
-        `Searching for: ${jobSearch}\nCategory: ${jobCategory}\nBudget: ${budget}\nDuration: ${duration}`
+        `Searching for jobs:\n` +
+        `Query: ${jobForm.search}\n` +
+        `Category: ${jobForm.category}\n` +
+        `Budget: ${jobForm.budget}\n` +
+        `Duration: ${jobForm.duration}`
       );
     }
-  };
+  }, [activeTab, freelancerForm, jobForm, getCurrentForm, isFormValid]);
+
+  const handlePopularSearchClick = useCallback((searchTerm) => {
+    if (activeTab === "freelancers") {
+      updateFreelancerForm("search", searchTerm);
+    } else {
+      updateJobForm("search", searchTerm);
+    }
+  }, [activeTab, updateFreelancerForm, updateJobForm]);
 
   return (
     <div
@@ -120,15 +106,19 @@ function SearchDropdown() {
           className={`tab${
             activeTab === "freelancers" ? " active" : ""
           }`}
-          onClick={() => setActiveTab("freelancers")}
+          onClick={() => handleTabChange("freelancers")}
           type="button"
+          aria-pressed={activeTab === "freelancers"}
+          role="tab"
         >
           Find Freelancers
         </button>
         <button
           className={`tab${activeTab === "jobs" ? " active" : ""}`}
-          onClick={() => setActiveTab("jobs")}
+          onClick={() => handleTabChange("jobs")}
           type="button"
+          aria-pressed={activeTab === "jobs"}
+          role="tab"
         >
           Find Jobs
         </button>
@@ -139,41 +129,50 @@ function SearchDropdown() {
             <input
               type="text"
               className="search-input"
-              placeholder="Search for web developers, designers, writers..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              placeholder={SEARCH_PLACEHOLDERS.freelancers}
+              value={freelancerForm.search}
+              onChange={(e) => updateFreelancerForm("search", e.target.value)}
+              aria-label="Search for freelancers"
+              minLength={2}
+              required
             />
             <div className="dropdown-row">
               <div className="dropdown-group">
-                <label>Category</label>
+                <label htmlFor="freelancer-category">Category</label>
                 <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  id="freelancer-category"
+                  value={freelancerForm.category}
+                  onChange={(e) => updateFreelancerForm("category", e.target.value)}
+                  aria-label="Select freelancer category"
                 >
-                  {freelancerCategories.map((cat) => (
-                    <option key={cat}>{cat}</option>
+                  {FREELANCER_CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>{cat}</option>
                   ))}
                 </select>
               </div>
               <div className="dropdown-group">
-                <label>Location</label>
+                <label htmlFor="freelancer-location">Location</label>
                 <select
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  id="freelancer-location"
+                  value={freelancerForm.location}
+                  onChange={(e) => updateFreelancerForm("location", e.target.value)}
+                  aria-label="Select location"
                 >
-                  {locations.map((loc) => (
-                    <option key={loc}>{loc}</option>
+                  {LOCATIONS.map((loc) => (
+                    <option key={loc} value={loc}>{loc}</option>
                   ))}
                 </select>
               </div>
               <div className="dropdown-group">
-                <label>Experience</label>
+                <label htmlFor="freelancer-experience">Experience</label>
                 <select
-                  value={experience}
-                  onChange={(e) => setExperience(e.target.value)}
+                  id="freelancer-experience"
+                  value={freelancerForm.experience}
+                  onChange={(e) => updateFreelancerForm("experience", e.target.value)}
+                  aria-label="Select experience level"
                 >
-                  {experienceLevels.map((exp) => (
-                    <option key={exp}>{exp}</option>
+                  {EXPERIENCE_LEVELS.map((exp) => (
+                    <option key={exp} value={exp}>{exp}</option>
                   ))}
                 </select>
               </div>
@@ -184,54 +183,88 @@ function SearchDropdown() {
             <input
               type="text"
               className="search-input"
-              placeholder="Search for jobs in your field..."
-              value={jobSearch}
-              onChange={(e) => setJobSearch(e.target.value)}
+              placeholder={SEARCH_PLACEHOLDERS.jobs}
+              value={jobForm.search}
+              onChange={(e) => updateJobForm("search", e.target.value)}
+              aria-label="Search for jobs"
+              minLength={2}
+              required
             />
             <div className="dropdown-row">
               <div className="dropdown-group">
-                <label>Category</label>
+                <label htmlFor="job-category">Category</label>
                 <select
-                  value={jobCategory}
-                  onChange={(e) => setJobCategory(e.target.value)}
+                  id="job-category"
+                  value={jobForm.category}
+                  onChange={(e) => updateJobForm("category", e.target.value)}
+                  aria-label="Select job category"
                 >
-                  {jobCategories.map((cat) => (
-                    <option key={cat}>{cat}</option>
+                  {JOB_CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>{cat}</option>
                   ))}
                 </select>
               </div>
               <div className="dropdown-group">
-                <label>Budget</label>
+                <label htmlFor="job-budget">Budget</label>
                 <select
-                  value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
+                  id="job-budget"
+                  value={jobForm.budget}
+                  onChange={(e) => updateJobForm("budget", e.target.value)}
+                  aria-label="Select budget range"
                 >
-                  {budgets.map((b) => (
-                    <option key={b}>{b}</option>
+                  {BUDGETS.map((b) => (
+                    <option key={b} value={b}>{b}</option>
                   ))}
                 </select>
               </div>
               <div className="dropdown-group">
-                <label>Duration</label>
+                <label htmlFor="job-duration">Duration</label>
                 <select
-                  value={duration}
-                  onChange={(e) => setDuration(e.target.value)}
+                  id="job-duration"
+                  value={jobForm.duration}
+                  onChange={(e) => updateJobForm("duration", e.target.value)}
+                  aria-label="Select project duration"
                 >
-                  {durations.map((d) => (
-                    <option key={d}>{d}</option>
+                  {DURATIONS.map((d) => (
+                    <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
               </div>
             </div>
           </>
         )}
-        <button type="submit" className="search-btn">
-          <span role="img" aria-label="search">
+        <button 
+          type="submit" 
+          className={`search-btn ${!isFormValid() ? 'disabled' : ''}`}
+          disabled={!isFormValid()}
+          aria-label="Start search"
+        >
+          <span role="img" aria-label="search icon">
             🔍
           </span>{" "}
           Search Now
         </button>
       </form>
+
+      {/* Popular Searches Section */}
+      <div className="mostly-searched-section">
+        <h3 className="mostly-searched-title">
+          Popular {activeTab === "freelancers" ? "Freelancer" : "Job"} Searches
+        </h3>
+        <div className="mostly-searched-list">
+          {POPULAR_SEARCHES[activeTab].map((searchTerm) => (
+            <button
+              key={searchTerm}
+              className="mostly-searched-item"
+              onClick={() => handlePopularSearchClick(searchTerm)}
+              type="button"
+              aria-label={`Search for ${searchTerm}`}
+            >
+              {searchTerm}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
