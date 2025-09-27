@@ -8,10 +8,9 @@
 /* Container Styles */
 .login-signup-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background: #f8fafc;
-  overflow: hidden;
 }
 
 /* Left Branding Section */
@@ -212,7 +211,6 @@
   padding-top: 4rem;
   background: #f8fafc;
   min-height: 100vh;
-  overflow-y: auto;
 }
 
 .form-container {
@@ -641,10 +639,13 @@
 @media (max-width: 1024px) {
   .login-signup-container {
     flex-direction: column;
+    min-height: 100vh;
+    height: auto;
   }
   
   .branding-section {
-    min-height: 50vh;
+    min-height: 40vh;
+    max-height: 50vh;
     flex: none;
     padding: 2rem;
     border-right: none;
@@ -652,10 +653,12 @@
   }
   
   .form-section {
-    flex: none;
+    flex: 1;
+    min-height: 60vh;
     padding: 1.5rem;
     padding-top: 2rem;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: center;
   }
   
   .brand-title {
@@ -691,20 +694,31 @@
 }
 
 @media (max-width: 768px) {
+  .login-signup-container {
+    min-height: 100vh;
+  }
+  
   .branding-section {
-    min-height: 45vh;
+    min-height: 35vh;
+    max-height: 40vh;
     padding: 1.5rem;
   }
   
   .form-section {
+    flex: 1;
+    min-height: 65vh;
     padding: 1rem;
     padding-top: 1.5rem;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
   }
   
   .form-container {
     padding: 1.5rem;
     border-radius: 12px;
+    width: 100%;
+    margin-bottom: 2rem;
   }
   
   .brand-header {
@@ -738,20 +752,33 @@
 }
 
 @media (max-width: 480px) {
+  .login-signup-container {
+    min-height: 100vh;
+  }
+  
   .branding-section {
-    min-height: 40vh;
+    min-height: 30vh;
+    max-height: 35vh;
     padding: 1rem;
   }
   
   .form-section {
+    flex: 1;
+    min-height: 70vh;
     padding: 0.75rem;
     padding-top: 1rem;
-    align-items: center;
+    padding-bottom: 2rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .form-container {
     padding: 1rem;
     margin: 0;
+    width: 100%;
+    min-height: fit-content;
   }
   
   .brand-header {
@@ -809,6 +836,76 @@
   
   .decoration-circle {
     display: none;
+  }
+  
+  /* Ensure smooth scrolling on mobile */
+  .form-section {
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimize form spacing for small screens */
+  .auth-form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .toggle-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+/* Additional mobile viewport optimizations */
+@media (max-height: 600px) and (max-width: 480px) {
+  .branding-section {
+    min-height: 25vh;
+    max-height: 30vh;
+  }
+  
+  .form-section {
+    min-height: 75vh;
+    padding-top: 0.5rem;
+  }
+  
+  .brand-header {
+    margin-bottom: 1rem;
+  }
+  
+  .form-header {
+    margin-bottom: 1rem;
+  }
+  
+  .auth-form .form-group {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .login-signup-container {
+    flex-direction: row;
+  }
+  
+  .branding-section {
+    min-height: 100vh;
+    max-height: 100vh;
+    flex: 0 0 40%;
+    border-right: 1px solid rgba(226, 232, 240, 0.5);
+    border-bottom: none;
+  }
+  
+  .form-section {
+    flex: 1;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: 1rem;
   }
 }
 
