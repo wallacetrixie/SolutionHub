@@ -3,7 +3,7 @@ import Navbar from "./Components/LandingPage/Navbar.jsx";
 import HeroSection from "./Components/LandingPage/HeroSection.jsx";
 import SearchDropdown from "./Components/LandingPage/SearchDropdown";
 import WhyUsSection from "./Components/LandingPage/WhyUsSection.jsx";
-import HowItWorks from "./Components/LandingPage/HowItWorks.jsx";
+import HowItWorks from "./Components/LandingPage/HowItWorks.tsx";
 import PopularCategories from "./Components/LandingPage/PopularCategories.jsx";
 import TestimonialSection from "./Components/LandingPage/Testimonials.jsx";
 import PricingPlans from "./Components/LandingPage/PricingPlan.jsx";
