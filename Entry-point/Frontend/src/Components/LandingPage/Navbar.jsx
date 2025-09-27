@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../styles/LandingPage/Navbar.css";
 import logo from '../../assets/images/logo.jpg';
 
@@ -7,6 +8,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -138,8 +141,20 @@ const Navbar = () => {
 
       {/* Auth Buttons */}
       <div className="navbar-auth">
-        <button className="login-btn" aria-label="Login">Login</button>
-        <button className="signup-btn" aria-label="Sign Up">Sign Up</button>
+        <button 
+          className="login-btn" 
+          aria-label="Login"
+          onClick={() => navigate('/login')}
+        >
+          Login
+        </button>
+        <button 
+          className="signup-btn" 
+          aria-label="Sign Up"
+          onClick={() => navigate('/login')}
+        >
+          Sign Up
+        </button>
       </div>
 
       {/* Mobile Hamburger Menu */}
