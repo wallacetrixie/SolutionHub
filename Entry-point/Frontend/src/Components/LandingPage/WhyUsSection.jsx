@@ -1,99 +1,171 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { 
+  FaBriefcase, 
+  FaShieldAlt, 
+  FaUsers, 
+  FaCalendarAlt, 
+  FaComments, 
+  FaChartBar,
+  FaStar,
+  FaAward,
+  FaDollarSign
+} from 'react-icons/fa';
 import '../../styles/WhyUs.css';
 
-const SkillHubSection = () => {
+const WhyUsSection = () => {
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  
   const features = [
     {
-      icon: '📦', // Replace with an actual icon component or image if needed
-      title: 'Post & Find Jobs Easily',
-      description: 'Create detailed job postings or browse thousands of opportunities. Our smart matching system connects the right people for every project.',
+      icon: FaBriefcase,
+      title: 'Smart Job Matching',
+      description: 'AI-powered job matching connects you with opportunities that perfectly match your skills, experience, and preferences for maximum success.',
     },
     {
-      icon: '🛡️', // Replace with an actual icon component or image if needed
-      title: 'Secure Payments',
-      description: 'Protected payments through escrow system. Funds are released only when milestones are completed to both parties\' satisfaction.',
+      icon: FaShieldAlt,
+      title: 'Secure Escrow System',
+      description: 'Military-grade security with smart escrow payments. Your funds are protected until project milestones are successfully completed.',
     },
     {
-      icon: '🧑‍🤝‍🧑', // Replace with an actual icon component or image if needed
-      title: 'Verified Professionals',
-      description: 'All freelancers and clients go through our verification process. Work with confidence knowing you\'re dealing with trusted individuals.',
+      icon: FaUsers,
+      title: 'Verified Talent Network',
+      description: 'Every professional undergoes rigorous verification including skills assessment, background checks, and portfolio validation.',
     },
     {
-      icon: '🗓️', // Replace with an actual icon component or image if needed
-      title: 'Project Management Tools',
-      description: 'Built-in tools for tracking progress, managing deadlines, and communicating effectively throughout your project lifecycle.',
+      icon: FaCalendarAlt,
+      title: 'Advanced Project Tools',
+      description: 'Comprehensive project management suite with milestone tracking, deadline automation, and progress visualization.',
     },
     {
-  icon: '🤝',
-  title: 'Collaboration Tools',
-  description: 'Real-time chat, file sharing, and notifications keep your team connected and projects moving smoothly.',
-},
-{
-  icon: '📊',
-  title: 'Analytics & Insights',
-  description: 'Track your performance, earnings, and project progress with built-in analytics dashboards.',
-},
+      icon: FaComments,
+      title: 'Real-time Collaboration',
+      description: 'Seamless communication with instant messaging, video calls, file sharing, and collaborative workspaces.',
+    },
+    {
+      icon: FaChartBar,
+      title: 'Performance Analytics',
+      description: 'Deep insights into your performance, earnings trends, client satisfaction, and growth opportunities with actionable recommendations.',
+    },
   ];
 
   const stats = [
-    { value: '100K+', label: 'Active Users' },
-    { value: '50K+', label: 'Projects Completed' },
-    { value: '$10M+', label: 'Paid to Freelancers' },
-    { value: '4.9⭐', label: 'Average Rating' },
+    { 
+      value: '250K+', 
+      label: 'Active Professionals',
+      icon: FaUsers
+    },
+    { 
+      value: '100K+', 
+      label: 'Projects Delivered',
+      icon: FaAward
+    },
+    { 
+      value: '$50M+', 
+      label: 'Earned by Freelancers',
+      icon: FaDollarSign
+    },
+    { 
+      value: '4.9', 
+      label: 'Average Rating',
+      icon: FaStar
+    },
   ];
 
   const featureRefs = useRef([]);
+  const statsRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      featureRefs.current.forEach((ref, idx) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 60) {
-            ref.classList.add(idx % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index);
+            setVisibleItems(prev => new Set([...prev, index]));
           }
-        }
-      });
-    };
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px 0px'
+      }
+    );
+
+    // Observe feature cards
+    featureRefs.current.forEach((ref, index) => {
+      if (ref) {
+        ref.dataset.index = index;
+        observer.observe(ref);
+      }
+    });
+
+    // Observe stats section
+    if (statsRef.current) {
+      statsRef.current.dataset.index = 'stats';
+      observer.observe(statsRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="skillhub-section">
+    <section className="whyus-section">
       <div className="container">
-        <h2 className="section-title">Why Choose <span className="skillhub-highlight">SolutionHub</span>?</h2>
-        <p className="section-description">
-          We've built everything you need to succeed in the freelance economy. From finding
-          work to getting paid, we've got you covered.
-        </p>
-
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <div
-              className="feature-card"
-              key={index}
-              ref={el => featureRefs.current[index] = el}
-            >
-              <div className="feature-icon">{feature.icon}</div>
-              <h3 className="feature-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
-            </div>
-          ))}
+        <div className="section-header">
+          <h2 className="section-title">
+            Why Choose <span className="brand-highlight">SolutionHub</span>?
+          </h2>
+          <p className="section-description">
+            Experience the future of freelancing with our cutting-edge platform designed for 
+            success. Join thousands of professionals who've transformed their careers with us.
+          </p>
         </div>
 
-        <div className="stats-bar">
-          {stats.map((stat, index) => (
-            <div className="stat-item" key={index}>
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
+        <div className="features-grid">
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon;
+            const isVisible = visibleItems.has(index);
+            return (
+              <div
+                className={`feature-card ${isVisible ? 'animate-in' : ''}`}
+                key={index}
+                ref={el => featureRefs.current[index] = el}
+                style={{
+                  animationDelay: `${index * 0.1}s`
+                }}
+              >
+                <div className="feature-icon">
+                  <IconComponent size={28} />
+                </div>
+                <h3 className="feature-title">{feature.title}</h3>
+                <p className="feature-description">{feature.description}</p>
+                <div className="feature-accent"></div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div 
+          className={`stats-bar ${visibleItems.has('stats') ? 'animate-in' : ''}`}
+          ref={statsRef}
+        >
+          {stats.map((stat, index) => {
+            const IconComponent = stat.icon;
+            return (
+              <div className="stat-item" key={index}>
+                <div className="stat-icon">
+                  <IconComponent size={24} />
+                </div>
+                <div className="stat-content">
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
-export default SkillHubSection;
+export default WhyUsSection;

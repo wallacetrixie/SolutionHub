@@ -6,6 +6,16 @@ export const useScrollAnimation = (threshold: number = 100): UseScrollAnimationR
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]): void => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      });
+    };
+
     const handleScroll = (): void => {
       if (!containerRef.current) return;
       
@@ -17,27 +27,17 @@ export const useScrollAnimation = (threshold: number = 100): UseScrollAnimationR
       }
     };
 
-    const handleIntersection = (entries: IntersectionObserverEntry[]): void => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      });
-    };
-
     // Use Intersection Observer if available, fallback to scroll
-    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && containerRef.current) {
       const observer = new IntersectionObserver(handleIntersection, {
         rootMargin: `${threshold}px`,
         threshold: 0.1,
       });
 
-      if (containerRef.current) {
-        observer.observe(containerRef.current);
-      }
-
+      observer.observe(containerRef.current);
       return () => observer.disconnect();
-    } else if (typeof window !== 'undefined') {
+    } else {
+      // Fallback to scroll listener
       window.addEventListener('scroll', handleScroll);
       handleScroll(); // Check on mount
       
