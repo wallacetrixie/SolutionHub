@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/HeroSection.css";
 import heroImage from '../../assets/images/HeroSection.jpg'; 
 
 const HeroSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [currentStatIndex, setCurrentStatIndex] = useState(0);
 
   const categories = [
     'Web Development',
@@ -14,8 +15,27 @@ const HeroSection = () => {
     'Mobile Development',
     'Data Analysis',
     'UI/UX Design',
-    'Video Editing'
+    'Video Editing',
+    'SEO & Marketing',
+    'Business Consulting',
+    'Translation Services',
+    'Photography'
   ];
+
+  const rotatingStats = [
+    { number: "50K+", label: "Active Professionals", icon: "👥" },
+    { number: "10K+", label: "Projects Completed", icon: "✅" },
+    { number: "95%", label: "Client Satisfaction", icon: "⭐" },
+    { number: "24/7", label: "Global Support", icon: "🌍" }
+  ];
+
+  // Rotate stats every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStatIndex((prevIndex) => (prevIndex + 1) % rotatingStats.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -42,49 +62,57 @@ const HeroSection = () => {
     <section className="hero">
       <div className="hero-content">
         {/* Trust Badge */}
-        <div className="hero-badge">
-          🏆 #1 Trusted Freelancing Platform
-        </div>
 
         {/* Main Headlines */}
         <h1 className="hero-title">
-          Connecting Freelancers with{" "}
-          <span className="gradient-blue">Clients Seamlessly</span>
+          Your Success Story Starts{" "}
+          <span className="gradient-blue">Here</span>
         </h1>
         
         <p className="hero-description">
-          Join thousands of professionals and businesses building success together. 
-          Whether you're looking to hire expert talent or showcase your skills, 
-          SolutionHub is your gateway to unlimited opportunities.
+          Connect with top-tier freelancers or find your next big opportunity. 
+          SolutionHub empowers professionals and businesses to achieve more together 
+          with secure payments, quality assurance, and 24/7 support.
         </p>
 
+   
         {/* Dual CTAs */}
         <div className="hero-buttons">
           <button className="cta-hire" onClick={handleHireTalent}>
-            <span className="btn-icon">👥</span>
-            Hire Talent
+            <span className="btn-icon">�</span>
+            <span className="btn-text">
+              <span className="btn-main">Hire Expert Talent</span>
+              <span className="btn-sub">Browse 50K+ professionals</span>
+            </span>
           </button>
           <button className="cta-work" onClick={handleFindWork}>
             <span className="btn-icon">💼</span>
-            Find Work
+            <span className="btn-text">
+              <span className="btn-main">Find Great Work</span>
+              <span className="btn-sub">Join thousands of freelancers</span>
+            </span>
           </button>
         </div>
 
-        {/* Search/Explore Bar */}
-        <div className="hero-search">
-          <form onSubmit={handleSearch} className="search-form">
-            <div className="search-container">
+        {/* Enhanced Search Section */}
+        <div className="hero-search-section">
+          <h3 className="search-title">What service do you need today?</h3>
+          <form onSubmit={handleSearch} className="hero-search-form">
+            <div className="search-input-wrapper">
+              <span className="search-icon">🔍</span>
               <input
                 type="text"
-                placeholder="What service are you looking for?"
+                placeholder="e.g., Logo design, Website development, Content writing..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
+                className="hero-search-input"
               />
+            </div>
+            <div className="search-controls">
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="category-select"
+                className="hero-category-select"
               >
                 <option value="">All Categories</option>
                 {categories.map((category, index) => (
@@ -93,46 +121,87 @@ const HeroSection = () => {
                   </option>
                 ))}
               </select>
-              <button type="submit" className="search-btn">
-                🔍 Search
+              <button type="submit" className="hero-search-btn">
+                <span>Search Talent</span>
+                <span className="btn-arrow">→</span>
               </button>
             </div>
           </form>
+          <div className="popular-searches">
+            <span className="popular-label">Popular:</span>
+            <div className="popular-tags">
+              <span className="popular-tag">Logo Design</span>
+              <span className="popular-tag">Website Development</span>
+              <span className="popular-tag">Content Writing</span>
+              <span className="popular-tag">Mobile Apps</span>
+            </div>
+          </div>
         </div>
 
-        {/* Stats Highlights */}
-        <div className="hero-stats">
-          <div className="stat-item">
-            <span className="stat-number">10K+</span>
-            <span className="stat-label">Active Freelancers</span>
+        {/* Dynamic Stats Display */}
+        <div className="hero-stats-dynamic">
+          <div className="rotating-stat">
+            <span className="stat-icon">{rotatingStats[currentStatIndex].icon}</span>
+            <div className="stat-content">
+              <span className="stat-number">{rotatingStats[currentStatIndex].number}</span>
+              <span className="stat-label">{rotatingStats[currentStatIndex].label}</span>
+            </div>
           </div>
-          <div className="stat-item">
-            <span className="stat-number">500+</span>
-            <span className="stat-label">Projects Monthly</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">200+</span>
-            <span className="stat-label">Trusted Clients</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">98%</span>
-            <span className="stat-label">Success Rate</span>
+          <div className="stat-indicators">
+            {rotatingStats.map((_, index) => (
+              <span 
+                key={index} 
+                className={`indicator ${index === currentStatIndex ? 'active' : ''}`}
+              ></span>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Hero Visual */}
-      <div className="hero-image">
-        <img src={heroImage} alt="Freelancers and clients collaborating successfully" />
-        
-        {/* Floating stats for visual interest */}
-        <div className="floating-card top-left">
-          <span className="card-emoji">⭐</span>
-          <span className="card-text">4.9/5 Rating</span>
+      {/* Enhanced Hero Visual */}
+      <div className="hero-visual">
+        <div className="hero-image-container">
+          <img src={heroImage} alt="Professional freelancers collaborating with clients on SolutionHub" />
+          
+          {/* Enhanced floating cards with animations */}
+          <div className="floating-card card-rating">
+            <div className="card-header">
+              <span className="card-icon">⭐</span>
+              <span className="card-title">Excellent</span>
+            </div>
+            <div className="card-content">
+              <span className="card-stars">★★★★★</span>
+              <span className="card-subtitle">4.9/5 from 10K+ reviews</span>
+            </div>
+          </div>
+
+          <div className="floating-card card-delivery">
+            <div className="card-header">
+              <span className="card-icon">🚀</span>
+              <span className="card-title">Fast Delivery</span>
+            </div>
+            <div className="card-content">
+              <span className="card-subtitle">Projects delivered on time</span>
+            </div>
+          </div>
+
+          <div className="floating-card card-projects">
+            <div className="card-header">
+              <span className="card-icon">📊</span>
+              <span className="card-title">Live Projects</span>
+            </div>
+            <div className="card-content">
+              <span className="card-number">1,247</span>
+              <span className="card-subtitle">Active right now</span>
+            </div>
+          </div>
         </div>
-        <div className="floating-card bottom-right">
-          <span className="card-emoji">🚀</span>
-          <span className="card-text">Fast Delivery</span>
+
+        {/* Background decoration */}
+        <div className="hero-decoration">
+          <div className="decoration-circle circle-1"></div>
+          <div className="decoration-circle circle-2"></div>
+          <div className="decoration-circle circle-3"></div>
         </div>
       </div>
     </section>

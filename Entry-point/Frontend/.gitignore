@@ -58,3 +58,64 @@ tmp/
 *.tmp
 *.swp
 *.swo
+
+### React / Vite specific ###
+# Vite build artifacts
+*.local
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# ESLint cache
+.eslintcache
+
+# Editor directories and files (enhanced)
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+*.lcov
+
+# nyc test coverage
+.nyc_output/
+
+# Optional npm cache directory
+.npm/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.parcel-cache/
+
+# Storybook build outputs
+.out/
+.storybook-out/
+
+# Temporary folders
+temp/
+
+# OS generated files (enhanced)
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
